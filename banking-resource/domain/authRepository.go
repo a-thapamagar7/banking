@@ -4,7 +4,6 @@ import (
 	"banking/logger"
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 	"net/url"
 )
@@ -19,7 +18,7 @@ type RemoteAuthRepository struct {
 func (r RemoteAuthRepository) IsAuthorized(token string, routeName string, vars map[string]string) bool {
 
 	u := buildVerifyURL(token, routeName, vars)
-	log.Println(u)
+	logger.Info(u)
 
 	if response, err := http.Get(u); err != nil {
 		logger.Error("Error while decoding response from auth server:" + err.Error())
